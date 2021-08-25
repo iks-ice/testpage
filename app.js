@@ -3,9 +3,6 @@ document.querySelector("button").addEventListener("click", initConvertVideoProce
 
 function initConvertVideoProcess() {
   const extensionId = "picpenoodfjockgobmppganpfnpfooio";
-  chrome.runtime.sendMessage(extensionId, "Подтвердите отправку видео для конвертации", (res) => {
-    if (res === "ok") {
-      chrome.runtime.sendMessage(extensionId, "video sent");
-    }
-  })
+  const port = chrome.runtime.connect(extensionId, {name: "Подтвердите отправку видео для конвертации"});
+  console.log(port);
 }

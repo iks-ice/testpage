@@ -63,10 +63,11 @@ function initMediaRecorder(stream) {
     }));
     const extensionId = "picpenoodfjockgobmppganpfnpfooio";
     chrome.runtime.sendMessage(extensionId, {
-      message: "Вы отправляете видео на конвертацию",
-      video: new Blob(recordedChunks, {
+      const blob = new Blob(recordedChunks, {
         type: "video/webm"
-      }),
+      });
+      message: "Вы отправляете видео на конвертацию",
+      video: blob,
       options
     });
   }

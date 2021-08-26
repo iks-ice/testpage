@@ -56,7 +56,7 @@ function initMediaRecorder(stream) {
     mediaRecorder.stop();
   }
 
-  function initConvertVideoProcess(recordedChunks, options={}) {
+  async function initConvertVideoProcess(recordedChunks, options={}) {
     console.log(recordedChunks);
     console.log(new Blob(recordedChunks, {
       type: "video/webm"
@@ -65,9 +65,10 @@ function initMediaRecorder(stream) {
     const blob = new Blob(recordedChunks, {
       type: "video/webm"
     });
+    const blobAsText = await blob.text();
     chrome.runtime.sendMessage(extensionId, {
       message: "Вы отправляете видео на конвертацию",
-      video: JSON.stringify(blob),
+      video: blobAsText,
       options
     });
   }

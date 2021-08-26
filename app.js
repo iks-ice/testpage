@@ -33,6 +33,7 @@ function initMediaRecorder(stream) {
   function handleDataAvailable(event) {
     console.log("data-available");
     if (event.data.size > 0) {
+      console.log(event.data);
       recordedChunks.push(event.data);
       console.log(recordedChunks);
       //download();

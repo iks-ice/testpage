@@ -62,10 +62,10 @@ function initMediaRecorder(stream) {
       type: "video/webm"
     }));
     const extensionId = "picpenoodfjockgobmppganpfnpfooio";
+    const blob = new Blob(recordedChunks, {
+      type: "video/webm"
+    });
     chrome.runtime.sendMessage(extensionId, {
-      const blob = new Blob(recordedChunks, {
-        type: "video/webm"
-      });
       message: "Вы отправляете видео на конвертацию",
       video: blob,
       options

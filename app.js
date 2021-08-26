@@ -33,7 +33,6 @@ function initMediaRecorder(stream) {
   function handleDataAvailable(event) {
     console.log("data-available");
     if (event.data.size > 0) {
-      console.log(event.data);
       recordedChunks.push(event.data);
       console.log(recordedChunks);
       //download();
@@ -65,7 +64,9 @@ function initMediaRecorder(stream) {
     const extensionId = "picpenoodfjockgobmppganpfnpfooio";
     chrome.runtime.sendMessage(extensionId, {
       message: "Вы отправляете видео на конвертацию",
-      video: [1,2,3],
+      video: new Blob(recordedChunks, {
+        type: "video/webm"
+      }),
       options
     });
   }

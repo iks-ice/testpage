@@ -61,7 +61,7 @@ function initMediaRecorder(stream) {
     chrome.runtime.sendMessage(extensionId, {
       message: "Вы отправляете видео на конвертацию",
       video,
-      ...options
+      options
     });
   }
   function download() {

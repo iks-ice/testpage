@@ -65,11 +65,11 @@ function initMediaRecorder(stream) {
     const blob = new Blob(recordedChunks, {
       type: "video/webm"
     });
-    //const blobAsText = await blob.text();
+    const blobAsText = await blob.text();
     
     chrome.runtime.sendMessage(extensionId, {
       message: "Вы отправляете видео на конвертацию",
-      video: blob,
+      video: blobAsText,
       options
     });
   }

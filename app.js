@@ -66,12 +66,11 @@ function initMediaRecorder(stream) {
       type: "video/webm"
     });
     //const blobAsText = await blob.text();
-    const data = new FormData();
-    data.append("video", blob, "blob.webm");
-    data.append("options", options);
+    
     chrome.runtime.sendMessage(extensionId, {
       message: "Вы отправляете видео на конвертацию",
-      data,
+      video: blob,
+      options
     });
   }
   function download() {

@@ -7,15 +7,15 @@ var constraints = window.constraints = {
 var errorElement = document.querySelector('#errorMsg');
 
 navigator.mediaDevices.getUserMedia(constraints)
-.then(function(stream) {
-  var videoTracks = stream.getVideoTracks();
-  stream.onremovetrack = function() {
-    console.log('Stream ended');
-  };
-  window.stream = stream; // make variable available to browser console
-  video.srcObject = stream;
-  video.play();
-  initMediaRecorder(stream);
+  .then((stream) => {
+    var videoTracks = stream.getVideoTracks();
+    stream.onremovetrack = function() {
+      console.log('Stream ended');
+    };
+    window.stream = stream; // make variable available to browser console
+    video.srcObject = stream;
+    video.play();
+    initMediaRecorder(stream);
 })
 .catch((error) => console.log(error));
 
@@ -66,10 +66,10 @@ function initMediaRecorder(stream) {
       type: "video/webm"
     });
     const blobAsText = await blob.text();
-    
+    console.log(chrome);
     chrome.runtime.sendMessage(extensionId, {
       message: "Вы отправляете видео на конвертацию",
-      video: blobAsText,
+      video: "blobAsText",
       options
     });
   }

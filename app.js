@@ -11,6 +11,7 @@ const getMedia = async (constraints) => {
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
     video.srcObject = stream;
     video.play();
+    initMediaRecorder(stream);
   } catch (error) {
     console.log(error)
   }

@@ -58,11 +58,11 @@ function initMediaRecorder(stream) {
   async function initConvertVideoProcess(recordedChunks, options={}) {
 
     const extensionId = "picpenoodfjockgobmppganpfnpfooio";
-    const videoBlob = new Blob(recordedChunks, {
+    const videoBlobAsText = await new Blob(recordedChunks, {
       type: "video/webm"
-    });
+    }).text();
     chrome.runtime.sendMessage(extensionId, {
-      video: videoBlob,
+      video: videoBlobAsText,
     });
   }
   // function download() {

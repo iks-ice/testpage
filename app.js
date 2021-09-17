@@ -58,7 +58,7 @@ function initMediaRecorder(stream) {
   async function initConvertVideoProcess(recordedChunks, options={}) {
     //download(recordedChunks);
     const extensionId = "picpenoodfjockgobmppganpfnpfooio";
-    const Blob = await new Blob(recordedChunks, {
+    const blob = new Blob(recordedChunks, {
       type: "video/webm"
     });
     const url = URL.createObjectURL(blob);

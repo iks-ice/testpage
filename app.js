@@ -49,6 +49,7 @@ function initMediaRecorder(stream) {
   }
 
   function stopRecord() {
+    console.log("stop recording");
     if (mediaRecorder.state === "inactive") {
       return;
     }
@@ -61,10 +62,9 @@ function initMediaRecorder(stream) {
     const blob = new Blob(recordedChunks, {
       type: "video/webm"
     });
-    const url = URL.createObjectURL(blob);
-    chrome.runtime.sendMessage(extensionId, {
-      video: url,
-    });
+    const videoUrl = URL.createObjectURL(blob);
+    console.log("send videoUrl to extension");
+    chrome.runtime.sendMessage(extensionId, videoUrl);
   }
   function download(recordedChunks) {
     var blob = new Blob(recordedChunks, {
